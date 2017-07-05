@@ -15,8 +15,10 @@ public class EncodeDecode {
     public static void main(String[] args) {
         String s = "1) Use EncodeDecode.encode(byteArrayOutputStream) to encode your byteArrayOutputStream to base64String \n"
                 + "2) Use EncodeDecode.decode(base64String) to decode the base64String back to byteArrayOutputStream";
+        System.out.println(s + "\n");
         ByteArrayOutputStream byteArrayOutputStream = getByteArrayOutputStream(s);
 
+        //most important three lines
         String base64String = encode(byteArrayOutputStream);
         System.out.println("base64String: " + base64String + "\n");
         byteArrayOutputStream = decode(base64String);
