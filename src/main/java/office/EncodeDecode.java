@@ -7,6 +7,7 @@ import sun.misc.BASE64Encoder;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Base64;
 
 /**
  * Created by Muneer on 05-07-2017.
@@ -32,7 +33,9 @@ public class EncodeDecode {
             byte[] bytes = byteArrayOutputStream.toByteArray();
             ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
             String s = IOUtils.toString(byteArrayInputStream, "UTF-8");
-            return new BASE64Encoder().encode(s.getBytes());
+            //return new  BASE64Encoder().encode(s.getBytes());
+            byte[] encodedBytes = Base64.getEncoder().encode(s.getBytes());
+            return new String(encodedBytes);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -42,7 +45,7 @@ public class EncodeDecode {
     private static ByteArrayOutputStream decode(String base64String) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         try {
-            byte[] bytes = new BASE64Decoder().decodeBuffer(base64String);
+            byte[] bytes = Base64.getDecoder().decode(base64String.getBytes());
             byteArrayOutputStream.write(bytes);
         } catch (IOException e) {
             e.printStackTrace();
